@@ -1,0 +1,354 @@
+
+/* 1. PODSTAWOWE STYLE STRONY ================================================== */
+/* Ogólny wygląd i układ całej strony */
+body {
+    background-color: #f5f3fc;
+    font-family: Arial, sans-serif;
+    color: #202c48;
+
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #202c48;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    text-align: center;
+    padding: 40px 20px;
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    background-color: #202c48;
+    color: white;
+    padding: 20px;
+}
+
+/* 2. PRZYCISKI ================================================== */
+/* Wygląd wszystkich przycisków na stronie */
+button {
+    background-color: #7562d9;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5b48b8;
+}
+
+/* 3. BIAŁE BLOKI TEKSTOWE ================================================== */
+/* Karta z wymówką oraz karta główna */
+.karta-wymowki {
+    background-color: white;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 15px;
+    width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* 4. SYSTEM OCENIANIA WYMÓWEK ================================================== */
+/* Sekcja z pytaniem o ocenę i gwiazdkami */
+.ocenianie {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eeeeee;
+}
+
+/* Kontener zawierający pięć gwiazdek */
+.gwiazdki {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Ukrycie widocznych pól radio */
+.gwiazdki input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Domyślny wygląd gwiazdek */
+.gwiazdki label {
+    font-size: 35px;
+    color: #cccccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/*Podświetlanie gwiazdek*/
+.gwiazdki label:hover,
+.gwiazdki label:hover ~ label,
+.gwiazdki input:checked ~ label {
+    color: #f5b301;
+}
+
+/* Oznaczenie gwiazdki aktywnej podczas nawigacji klawiaturą */
+.gwiazdki input:focus-visible + label {
+    outline: 2px solid #7562d9;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* 5. FORMULARZ DODAWANIA WYMÓWEK ================================================== */
+/* Układ formularza */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+/* Etykieta "Treść wymówki" */
+form label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Pole do wpisywania własnej wymówki */
+form textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+/* Przycisk "Dodaj wymówkę" */
+form button {
+    align-self: center;
+}
+
+/* Wygląd pola tekstowego podczas wpisywania */
+form textarea:focus {
+    outline: none;
+    border-color: #7562d9;
+    box-shadow: 0 0 5px rgba(117, 98, 217, 0.3);
+}
+
+/* 6. RANKING WYMÓWEK ================================================== */
+/* Kontener przechowujący wszystkie pozycje rankingu */
+.ranking {
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* Wygląd pojedynczej karty w rankingu */
+.pozycja-rankingu {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Nagłówek z numerem miejsca w rankingu */
+.pozycja-rankingu h3 {
+    margin-top: 0;
+}
+
+/* Ostatni akapit w karcie - średnia ocena wymówki */
+.pozycja-rankingu p:last-child {
+    color: #b8860b;
+    font-weight: bold;
+}
+
+/* 7. MENU NAWIGACYJNE ================================================== */
+/* Rozmieszczenie odnośników w nagłówku */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Wygląd odnośników menu */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+/* Zmiana koloru linku po najechaniu kursorem */
+nav a:hover {
+    color: #b8a9ff;
+}
+
+
+/* 8. RESPONSYWNOŚĆ ================================================== */
+
+/* Style uruchamiane przy szerokości ekranu do 600px */
+@media (max-width: 600px) {
+
+    /* Mniejsze odstępy w nagłówku */
+    header {
+        padding: 20px 10px;
+    }
+
+    /* Zmniejszenie głównego tytułu aplikacji */
+    header h1 {
+        font-size: 24px;
+    }
+
+    /* Mniejsze odstępy między linkami menu */
+    nav {
+        gap: 15px;
+    }
+
+    /* Zmniejszenie czcionki odnośników */
+    nav a {
+        font-size: 14px;
+    }
+
+    /* Mniejsze odstępy głównej zawartości */
+    main {
+        padding: 25px 15px;
+    }
+
+    /* Mniejsze odstępy wewnątrz białych kart */
+    .karta-wymowki {
+        padding: 20px;
+    }
+
+    /* Mniejsze odstępy wewnątrz kart rankingu */
+    .pozycja-rankingu {
+        padding: 20px;
+    }
+
+    /* Dostosowanie stopki do telefonów */
+    footer {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
+/* 9. FORMULARZ LOGOWANIA ================================================== */
+
+.karta-logowania {
+    background-color: white;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 15px;
+    max-width: 450px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Pola nazwy użytkownika i hasła */
+.karta-logowania input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Wygląd pola po kliknięciu */
+.karta-logowania input:focus {
+    outline: none;
+    border-color: #7562d9;
+    box-shadow: 0 0 5px rgba(117, 98, 217, 0.3);
+}
+
+/* Tekst pod formularzem */
+.karta-logowania > p {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .karta-logowania {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+/* 10. PROFIL UŻYTKOWNIKA ================================================== */
+
+.karta-profilu {
+    background-color: white;
+    max-width: 520px;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Ikona użytkownika */
+.avatar-profilu {
+    width: 80px;
+    height: 80px;
+    background-color: #eae5fc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    margin: 0 auto 25px;
+}
+
+/* Wiersze informacji o koncie */
+.informacja-profilu {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eeeeee;
+    text-align: left;
+}
+
+/* Przycisk wylogowania */
+.karta-profilu button {
+    margin-top: 25px;
+}
+
+/* 11. KOMUNIKATY FORMULARZY ================================================== */
+
+.komunikat-blad {
+    background-color: #ffe6e6;
+    color: #a32020;
+    border: 1px solid #e8aaaa;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* 12. FORMULARZ WYLOGOWANIA ================================================== */
+
+.formularz-wylogowania {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.formularz-wylogowania button {
+    margin-top: 0;
+}

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie - Wymówki Studenckie</title>
+    <link rel="stylesheet" href="{% static 'WymowkiStudenckie/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>🎓 Wymówki Studenckie 🎓</h1>
+        <p>Generator wymówek dla studentów</p>
+
+        <nav>
+            <a href="{% url 'index' %}">Strona główna</a>
+            <a href="{% url 'DodajWymowke' %}">Dodaj wymówkę</a>
+            <a href="{% url 'Ranking' %}">Ranking</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'profil' %}">Mój profil</a>
+            {% else %}
+                <a href="{% url 'logowanie' %}">Logowanie</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <h2>Zaloguj się</h2>
+        <p>Witaj ponownie w świecie studenckich wymówek!</p>
+
+        <div class="karta-logowania">
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% if blad_logowania %}
+                    <p class="komunikat-blad">
+                        {{ blad_logowania }}
+                    </p>
+                {% endif %}
+
+                <label for="username">Nazwa użytkownika:</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Wpisz nazwę użytkownika..."
+                    autocomplete="username"
+                    required>
+
+                <label for="password">Hasło:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Wpisz hasło..."
+                    autocomplete="current-password"
+                    required>
+
+                <button type="submit">Zaloguj się</button>
+            </form>
+
+            <p>
+                Nie masz jeszcze konta?
+                <a href="{% url 'rejestracja' %}">Zarejestruj się</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Wymówki Studenckie / projekt PI / 2026</p>
+    </footer>
+
+</body>
+</html>

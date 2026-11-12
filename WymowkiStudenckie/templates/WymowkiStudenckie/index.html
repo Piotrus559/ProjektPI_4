@@ -1,6 +1,81 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl">
-    <body>
-        <h1>Wszystko dziala lol</h1>
-    </body>
+
+<!-- Ustawienia dokumentu HTML -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wymówki Studenckie</title>
+    <link rel="stylesheet" href="static/WymowkiStudenckie/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🎓 Wymówki Studenckie 🎓</h1>
+        <p>Generator wymówek dla studentów</p>
+
+        <!-- Menu nawigacyjne pomiędzy podstronami -->
+        <nav>
+            <a href="{% url 'index' %}">Strona główna</a>
+            <a href="{% url 'DodajWymowke' %}">Dodaj wymówkę</a>
+            <a href="{% url 'Ranking' %}">Ranking</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'profil' %}">Mój profil</a>
+            {% else %}
+                <a href="{% url 'logowanie' %}">Logowanie</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <!-- Główna zawartość strony -->
+    <main>
+        <h2>Nie masz wymówki?</h2>
+        <p>Wylosuj ją lub podziel się nową ze społecznością!</p>
+
+        <!-- Karta wyświetlająca wylosowaną wymówkę -->
+        <div class="karta-wymowki">
+            <h3>Twoja wylosowana wymówka:</h3>
+            <p>Nie mogłam przyjść na zajęcia, bo sąsiad zastawił mi bramę wjazdową traktorem.</p>
+
+            <!-- Sekcja oceniania wylosowanej wymówki -->
+            <div class="ocenianie">
+                <h4>Jak oceniasz tę wymówkę?</h4>
+
+                <!-- System oceniania od 1 do 5 gwiazdek -->
+                <div class="gwiazdki">
+                    <input type="radio" id="ocena5" name="ocena" value="5">
+                    <label for="ocena5" aria-label="5 gwiazdek">★</label>
+
+                    <input type="radio" id="ocena4" name="ocena" value="4">
+                    <label for="ocena4" aria-label="4 gwiazdki">★</label>
+
+                    <input type="radio" id="ocena3" name="ocena" value="3">
+                    <label for="ocena3" aria-label="3 gwiazdki">★</label>
+
+                    <input type="radio" id="ocena2" name="ocena" value="2">
+                    <label for="ocena2" aria-label="2 gwiazdki">★</label>
+
+                    <input type="radio" id="ocena1" name="ocena" value="1">
+                    <label for="ocena1" aria-label="1 gwiazdka">★</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Przycisk losowania wymówki, resetuje gwiazdki przy pomocy script.js -->
+        <button type="button" id="losuj-wymowke">Losuj wymówkę 🎲</button>
+    </main>
+
+
+    <footer>
+        <p>Wymówki Studenckie / projekt PI / 2026</p>
+    </footer>
+
+    <!-- Podłączenie JavaScriptu odpowiedzialnego za resetowanie ocen -->
+    <script src="static/WymowkiStudenckie/script.js"></script>
+
+</body>
+
 </html>

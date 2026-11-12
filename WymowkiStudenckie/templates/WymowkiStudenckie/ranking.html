@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+
+<!-- Ustawienia dokumentu HTML -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - Wymówki Studenckie</title>
+    <link rel="stylesheet" href="{% static 'WymowkiStudenckie/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>🎓 Wymówki Studenckie 🎓</h1>
+        <p>Generator wymówek dla studentów</p>
+
+        <!-- Menu nawigacyjne pomiędzy podstronami -->
+        <nav>
+            <a href="{% url 'index' %}">Strona główna</a>
+            <a href="{% url 'DodajWymowke' %}">Dodaj wymówkę</a>
+            <a href="{% url 'Ranking' %}">Ranking</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'profil' %}">Mój profil</a>
+            {% else %}
+                <a href="{% url 'logowanie' %}">Logowanie</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <h2>🏆 Ranking wymówek</h2>
+        <p>Sprawdź, które wymówki podbiły serca studentów!</p>
+
+        <div class="ranking">
+
+            <div class="pozycja-rankingu">
+                <h3>🥇 1. miejsce</h3>
+                <p>Nie mogłam przyjść na zajęcia, bo sąsiad zastawił mi bramę traktorem.</p>
+                <p>⭐ Średnia ocena: 4,9 / 5</p>
+            </div>
+
+            <div class="pozycja-rankingu">
+                <h3>🥈 2. miejsce</h3>
+                <p>Nie przyszłam, bo kot zasnął na moich butach.</p>
+                <p>⭐ Średnia ocena: 4,7 / 5</p>
+            </div>
+
+            <div class="pozycja-rankingu">
+                <h3>🥉 3. miejsce</h3>
+                <p>Spóźniłam się, bo autobus się do mnie nie dostosował.</p>
+                <p>⭐ Średnia ocena: 4,5 / 5</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Wymówki Studenckie / projekt PI / 2026</p>
+    </footer>
+
+</body>
+</html>

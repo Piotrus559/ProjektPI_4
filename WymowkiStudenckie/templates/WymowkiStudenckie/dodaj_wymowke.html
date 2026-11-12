@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+
+<!-- Ustawienia dokumentu HTML -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj wymówkę - Wymówki Studenckie</title>
+    <link rel="stylesheet" href="{% static 'WymowkiStudenckie/style.css' %}">
+</head>
+<body>
+
+    <!-- Nagłówek strony -->
+    <header>
+        <h1>🎓 Wymówki Studenckie 🎓</h1>
+        <p>Generator wymówek dla studentów</p>
+
+        <!-- Menu nawigacyjne pomiędzy podstronami -->
+        <nav>
+            <a href="{% url 'index' %}">Strona główna</a>
+            <a href="{% url 'DodajWymowke' %}">Dodaj wymówkę</a>
+            <a href="{% url 'Ranking' %}">Ranking</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'profil' %}">Mój profil</a>
+            {% else %}
+                <a href="{% url 'logowanie' %}">Logowanie</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <!-- Główna zawartość podstrony -->
+    <main>
+        <h2>Dodaj własną wymówkę ✏️</h2>
+        <p>Masz świetną wymówkę? Podziel się nią z innymi!</p>
+
+        <!-- Karta zawierająca formularz dodawania wymówki -->
+        <div class="karta-wymowki">
+            <form>
+                <!-- Etykieta pola tekstowego -->
+                <label for="tresc-wymowki">Treść wymówki:</label>
+
+                <!-- Pole do wpisywania własnej wymówki -->
+                <textarea
+                    id="tresc-wymowki"
+                    name="tresc-wymowki"
+                    rows="5"
+                    placeholder="Wpisz tutaj swoją wymówkę..."
+                    required></textarea>
+
+                <!-- Przycisk wysyłający formularz -->
+                <button type="submit">Dodaj wymówkę</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Wymówki Studenckie / projekt PI / 2026</p>
+    </footer>
+
+</body>
+</html>
